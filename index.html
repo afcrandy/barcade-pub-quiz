@@ -15,8 +15,8 @@
     <section class="top-area">
         <div class="logo">Barcade Pub Quiz</div>
 
-        <div class="score-tracker">
-            <span class="score">0</span> / 15
+        <div class="score-progress">
+            <span class="score" id="score-tracker">2</span> / 15
         </div>
     </section>
 
@@ -32,13 +32,13 @@
 
         <!-- question content for each round of the quiz -->
         <div class="question-area">
-            <div class="question-text">This is a question</div>
+            <div class="question-text" id="question-text">This is a question</div>
 
             <div class="answers">
-                <div class="answer">A. Option 1</div>
-                <div class="answer">B. Option 2</div>
-                <div class="answer">C. Option 3</div>
-                <div class="answer">D. Option 4</div>
+                <div class="answer" id="answer-0">A. Option 1</div>
+                <div class="answer" id="answer-1">B. Option 2</div>
+                <div class="answer" id="answer-2">C. Option 3</div>
+                <div class="answer" id="answer-3">D. Option 4</div>
             </div>
         </div>
 
@@ -47,7 +47,7 @@
             <div>Out of 15 questions, you got</div>
             
             <div class="final-score">
-                <span class="score">0</span>
+                <span class="score" id="final-score">3</span>
             </div>
         </div>
 
@@ -67,7 +67,7 @@
         <div class="quiz-actions">
             <div class="quiz-action player-action" id="home-btn">Home</div>
             <div class="quiz-action player-action" id="instructions-btn">How to Play</div>
-            <div class="quiz-action player-action" id="play-general-btn">Play General Knowledge</div>
+            <div class="quiz-action player-action" id="quick-play-btn">Play General Knowledge</div>
             <div class="quiz-action player-action" id="play-category-btn">Select a category</div>
         </div>
 
