@@ -42,22 +42,31 @@
 
         <!-- final score upon quiz completion -->
         <div class="results-area">
-            <p>Out of 15 questions, you got</p>
+            <div>Out of 15 questions, you got</div>
             
-            <p class="final-score">
+            <div class="final-score">
                 <span class="score">0</span>
-            </p>
+            </div>
         </div>
+
+        <!-- the instructions modal -->
+        <dialog class="instructions-modal" id="instructions-modal">
+            <div class="instructions">
+                Here are some instructions
+            </div>
+            
+            <button id="close-instructions-btn">Close</button>
+        </dialog>
     </section>
 
     <!-- actions section, contains play, continue and home buttons -->
     <section class="actions-area">
         <!-- actions a player can take either before or after a quiz -->
         <div class="quiz-actions">
-            <div class="quiz-action player-action">Home</div>
-            <div class="quiz-action player-action">How to Play</div>
-            <div class="quiz-action player-action">Play General Knowledge</div>
-            <div class="quiz-action player-action">Select a category</div>
+            <div class="quiz-action player-action" id="home-btn">Home</div>
+            <div class="quiz-action player-action" id="instructions-btn">How to Play</div>
+            <div class="quiz-action player-action" id="play-general-btn">Play General Knowledge</div>
+            <div class="quiz-action player-action" id="play-category-btn">Select a category</div>
         </div>
 
         <!-- actions a player can take during a round of a quiz -->
@@ -71,5 +80,8 @@
     <footer class="footer">
         Created by Andrew Reid
     </footer>
+
+    <!-- load script.js -->
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
