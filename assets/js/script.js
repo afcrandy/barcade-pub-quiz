@@ -23,10 +23,13 @@ function closeInstructions() {
 }
 
 // call question api and retrieve 15 random questions
-async function retrieveQuestions() {
+async function retrieveQuestions(categories) {
     // build api call, default to 15 questions no category
-    const apiBaseURL = 'https://the-trivia-api.com/v2/questions?limit=15';
-    const apiResponse = await fetch(apiBaseURL);
+    const apiBaseURL = 'https://the-trivia-api.com/v2/questions';
+    let apiURL = `${apiBaseURL}?limit=15`;
+    if (categories) { apiURL += `&categories=${categories}`; }
+    
+    const apiResponse = await fetch(apiURL);
 
     // handle call failure
     if (apiResponse.status === 200) {
