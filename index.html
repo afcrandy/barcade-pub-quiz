@@ -11,24 +11,65 @@
 <body>
     <!-- top logo and scores/progress section -->
     <section class="top-area">
-        <div class="logo"></div>
-        <div class="score-tracker"></div>
+        <div class="logo">Barcade Pub Quiz</div>
+
+        <div class="score-tracker">
+            <span class="score">0</span> / 15
+        </div>
     </section>
 
     <!-- main content section for landing page and question area -->
     <section class="main-content">
-        <div class="hero-welcome"></div>
-        <div class="question-area"></div>
-        <div class="results-area"></div>
+        <!-- home page hero content -->
+        <div class="hero-welcome">
+            <div class="hero-logo">
+                Welcome to the Barcade Pub Quiz
+            </div>
+            <div class="hero-message">For those who want to play a pub quiz game</div>
+        </div>
+
+        <!-- question content for each round of the quiz -->
+        <div class="question-area">
+            <div class="question-text">This is a question</div>
+
+            <div class="answers">
+                <div class="answer">A. Option 1</div>
+                <div class="answer">B. Option 2</div>
+                <div class="answer">C. Option 3</div>
+                <div class="answer">D. Option 4</div>
+            </div>
+        </div>
+
+        <!-- final score upon quiz completion -->
+        <div class="results-area">
+            <p>Out of 15 questions, you got</p>
+            
+            <p class="final-score">
+                <span class="score">0</span>
+            </p>
+        </div>
     </section>
 
     <!-- actions section, contains play, continue and home buttons -->
     <section class="actions-area">
-        <div class="quiz-actions"></div>
-        <div class="round-actions"></div>
+        <!-- actions a player can take either before or after a quiz -->
+        <div class="quiz-actions">
+            <div class="quiz-action player-action">Home</div>
+            <div class="quiz-action player-action">How to Play</div>
+            <div class="quiz-action player-action">Play General Knowledge</div>
+            <div class="quiz-action player-action">Select a category</div>
+        </div>
+
+        <!-- actions a player can take during a round of a quiz -->
+        <div class="round-actions">
+            <div class="round-action player-action">Home</div>
+            <div class="round-action player-action">Next</div>
+        </div>
     </section>
 
     <!-- footer -->
-    <footer class="footer"></footer>
+    <footer class="footer">
+        Created by Andrew Reid
+    </footer>
 </body>
 </html>
