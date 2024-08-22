@@ -23,6 +23,13 @@ document.addEventListener("DOMContentLoaded", function() {
     // apply the nextRound function to the 'Next' buttong
     let nextButton = document.getElementById('next-btn');
     nextButton.addEventListener('click', nextRound);
+
+    // add returnToHomePage to listeners on 'home-btn' and 'exit-quiz-btn'
+    let homeBtn = document.getElementById('home-btn');
+    let exitQuizBtn = document.getElementById('exit-quiz-btn');
+    for (const btn of [homeBtn, exitQuizBtn]) {
+        btn.addEventListener('click', returnToHomePage);
+    }
 })
 
 // event listeners to open and close the instructions modal
@@ -149,9 +156,7 @@ function feedbackRoundToUser(didUserAnswerCorrectly) {
     let nextButton = document.getElementById('next-btn');
     nextButton.classList.remove('btn-disabled');
     
-    // style the correct answer
-    // retrieve the correct answer from the quiz object
-    // find the .answer element containing it and apply the correct-answer class
+    // find the .answer element containing the correct answer and apply the correct-answer class
     let correctAnswer = quiz.questionsData[quiz.questionNumber - 1].correctAnswer;
     let correctOption = document.querySelector(`.answer[data-answer="${correctAnswer}"]`);
     correctOption.classList.add('correct-answer');
@@ -160,6 +165,25 @@ function feedbackRoundToUser(didUserAnswerCorrectly) {
     if (!didUserAnswerCorrectly) {
         let selectedAnswer = document.getElementsByClassName('selected-option')[0];
         selectedAnswer.classList.add('incorrect-answer');
+    }
+}
+
+// user clicks either the 'Next' or 'Submit' button, run the correct set of code
+// dependinbg on whether currentQuestion is the last or not
+function clickNextButton() {
+    // reset question page functionality and styling
+    resetQuestionPage();
+    
+    // if currentQuestion is not the last one, reset and go again
+    if (quiz.questionNumber < 15) {
+        // increment quiz.questionNumber
+        quiz.questionNumber += 1;
+
+        // write the next question to the page
+        writeQuestion(quiz.questionNumber - 1);
+    } else {
+        // trigger Results page
+        alert('Game is over now');
     }
 }
 
@@ -185,11 +209,11 @@ function nextRound() {
 function resetQuestionPage() {
     // remove the 'selected-option' class
     let selectedOption = document.getElementsByClassName('selected-option')[0];
-    selectedOption.classList.remove('selected-option');
+    if (selectedOption) { selectedOption.classList.remove('selected-option') };
     
     // remove the 'option-selected' class
     let answersBox = document.getElementById('answers');
-    answersBox.classList.remove('option-selected');
+    if (answersBox) { answersBox.classList.remove('option-selected') };
 
     // remove the 'incorrect-answer' and 'correct-answer' classes, if they exist
     let incorrectAnswer = document.getElementsByClassName('incorrect-answer')[0],
@@ -203,4 +227,18 @@ function resetQuestionPage() {
 
     // reset 'Next' button text in case where game has finished
     nextButton.innerHTML = "Next";
+}
+
+// return to the homepage - clear styling and arrange the page
+function returnToHomePage() {
+    // clear the question page of styling should user begin a new quiz
+    resetQuestionPage();
+
+    // rearrange the page for Home
+    arrangeHomePage();
+}
+
+// update stylng of page elements to recreate the Home page
+function arrangeHomePage() {
+    console.log('called - arrangeHomePage()');
 }
