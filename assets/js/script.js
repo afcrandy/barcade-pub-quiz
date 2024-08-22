@@ -19,6 +19,10 @@ document.addEventListener("DOMContentLoaded", function() {
     for (const answerOption of answerOptions) {
         answerOption.addEventListener('click', selectOption);
     }
+
+    // apply the nextRound function to the 'Next' buttong
+    let nextButton = document.getElementById('next-btn');
+    nextButton.addEventListener('click', nextRound);
 })
 
 // event listeners to open and close the instructions modal
@@ -90,6 +94,7 @@ function writeQuestion(questionIndex) {
         // retrieve the option element and update
         let option = document.getElementById(`answer-${index}`);
         option.innerHTML = answer;
+        option.dataset.answer = answer;
     }
 }
 
@@ -112,7 +117,7 @@ function selectOption() {
     let answeredCorrectly = checkAnswer(this.innerHTML);
     setTimeout(feedbackRoundToUser, 500, answeredCorrectly);
 
-    // enable 'Next' button
+    // enable 'Next' button - maybe move into the styling feedback function
     let nextButton = document.getElementById('next-btn');
     nextButton.classList.remove('btn-disabled');
 }
@@ -153,4 +158,46 @@ function feedbackRoundToUser(didUserAnswerCorrectly) {
         let selectedAnswer = document.getElementsByClassName('selected-option')[0];
         selectedAnswer.classList.add('incorrect-answer');
     }
+}
+
+// when the user clicks next
+function nextRound() {
+    // reset question page functionality and styling
+    resetQuestionPage();
+    
+    // if currentQuestion is not the last one, reset and go again
+    if (quiz.questionNumber < 15) {
+        // increment quiz.questionNumber
+        quiz.questionNumber += 1;
+
+        // write the next question to the page
+        writeQuestion(quiz.questionNumber - 1);
+    } else {
+        // trigger Results page
+        alert('Game is over now');
+    }
+}
+
+// removes or adds classes where necessary to restore original question page functionality
+function resetQuestionPage() {
+    // remove the 'selected-option' class
+    let selectedOption = document.getElementsByClassName('selected-option')[0];
+    selectedOption.classList.remove('selected-option');
+    
+    // remove the 'option-selected' class
+    let answersBox = document.getElementById('answers');
+    answersBox.classList.remove('option-selected');
+
+    // remove the 'incorrect-answer' and 'correct-answer' classes, if they exist
+    let incorrectAnswer = document.getElementsByClassName('incorrect-answer')[0],
+        correctAnswer = document.getElementsByClassName('correct-answer')[0];
+    if (incorrectAnswer) { incorrectAnswer.classList.remove('incorrect-answer'); }
+    if (correctAnswer) { correctAnswer.classList.remove('correct-answer'); }
+
+    // disable 'Next' button
+    let nextButton = document.getElementById('next-btn');
+    nextButton.classList.add('btn-disabled');
+
+    // reset 'Next' button text in case where game has finished
+    nextButton.innerHTML = "Next";
 }
