@@ -1,5 +1,5 @@
 // create the data store for retrieved questions
-let questionsData = {};
+let quiz = {};
 
 // Wait for the DOM to finish loading
 document.addEventListener("DOMContentLoaded", function() {
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // add beginQuiz event listener to the 'Play' buttons
     let quickPlayButton = document.getElementById('quick-play-btn');
-    quickPlayButton.addEventListener('click', beginQuiz);
+    quickPlayButton.addEventListener('click', quickPlay);
 })
 
 // event listeners to open and close the instructions modal
@@ -37,7 +37,7 @@ async function retrieveQuestions(categories) {
 
     // handle call failure
     if (apiResponse.status === 200) {
-        questionsData = await apiResponse.json();
+        quiz.questionsData = await apiResponse.json();
         writeQuestion(0);
     } else {
         // add error page here
@@ -48,18 +48,28 @@ async function retrieveQuestions(categories) {
 // begin the quiz - retrieve the questions and load up the first question
 // future: add code to reshape the page
 function beginQuiz(categories) {
+    // set score to 0 and question number to 1
+    quiz.score = 0;
+    quiz.questionNumber = 1;
+
+    // retrieve questions from the api
     retrieveQuestions(categories);
 
     // rearrange the screen for the quiz
 
     // set the scores to 0
     let scoreTracker = document.getElementById('score-tracker');
-    scoreTracker.innerHTML = '0';
+    scoreTracker.innerHTML = quiz.score;
+}
+
+// begin a quiz game with no category specified
+function quickPlay() {
+    beginQuiz();
 }
 
 // given an index write a question to the page
 function writeQuestion(questionIndex) {
-    let questionData = questionsData[questionIndex];
+    let questionData = quiz.questionsData[questionIndex];
 
     // write question text to qText
     let qText = document.getElementById('question-text');
