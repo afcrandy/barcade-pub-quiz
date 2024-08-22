@@ -116,10 +116,6 @@ function selectOption() {
     // check answer and after 0.5s delay feedback to user
     let answeredCorrectly = checkAnswer(this.innerHTML);
     setTimeout(feedbackRoundToUser, 500, answeredCorrectly);
-
-    // enable 'Next' button - maybe move into the styling feedback function
-    let nextButton = document.getElementById('next-btn');
-    nextButton.classList.remove('btn-disabled');
 }
 
 // check selected answer and feedback to user
@@ -149,9 +145,16 @@ function feedbackRoundToUser(didUserAnswerCorrectly) {
     // if correct increment score
     if (didUserAnswerCorrectly) { incrementScore(); }
     
+    // enable 'Next' button
+    let nextButton = document.getElementById('next-btn');
+    nextButton.classList.remove('btn-disabled');
+    
     // style the correct answer
     // retrieve the correct answer from the quiz object
     // find the .answer element containing it and apply the correct-answer class
+    let correctAnswer = quiz.questionsData[quiz.questionNumber - 1].correctAnswer;
+    let correctOption = document.querySelector(`.answer[data-answer="${correctAnswer}"]`);
+    correctOption.classList.add('correct-answer');
     
     // if different to selected answer, apply some style to that answer too using incorrect-answer class
     if (!didUserAnswerCorrectly) {
