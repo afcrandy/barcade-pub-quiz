@@ -34,7 +34,7 @@
         <div class="question-area">
             <div class="question-text" id="question-text">This is a question</div>
 
-            <div class="answers">
+            <div class="answers" id="answers">
                 <div class="answer" id="answer-0">A. Option 1</div>
                 <div class="answer" id="answer-1">B. Option 2</div>
                 <div class="answer" id="answer-2">C. Option 3</div>
@@ -64,7 +64,7 @@
     <!-- actions section, contains play, continue and home buttons -->
     <section class="actions-area">
         <!-- actions a player can take either before or after a quiz -->
-        <div class="quiz-actions">
+        <div class="quiz-actions" id="quiz-actions">
             <div class="quiz-action player-action" id="home-btn">Home</div>
             <div class="quiz-action player-action" id="instructions-btn">How to Play</div>
             <div class="quiz-action player-action" id="quick-play-btn">Play General Knowledge</div>
@@ -72,9 +72,9 @@
         </div>
 
         <!-- actions a player can take during a round of a quiz -->
-        <div class="round-actions">
+        <div class="round-actions" id="round-actions">
             <div class="round-action player-action">Home</div>
-            <div class="round-action player-action">Next</div>
+            <div class="round-action player-action btn-disabled" id="next-btn">Next</div>
         </div>
     </section>
 

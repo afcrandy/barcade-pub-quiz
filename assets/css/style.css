@@ -1,0 +1,4 @@
+.answers.option-selected > .answer,
+.btn-disabled {
+    pointer-events: none;
+}

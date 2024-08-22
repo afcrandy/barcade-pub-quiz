@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // add beginQuiz event listener to the 'Play' buttons
     let quickPlayButton = document.getElementById('quick-play-btn');
     quickPlayButton.addEventListener('click', quickPlay);
+
+    // selectOption event listener on all options
+    let answerOptions = document.getElementsByClassName('answer');
+    for (const answerOption of answerOptions) {
+        answerOption.addEventListener('click', selectOption);
+    }
 })
 
 // event listeners to open and close the instructions modal
@@ -55,11 +61,11 @@ function beginQuiz(categories) {
     // retrieve questions from the api
     retrieveQuestions(categories);
 
-    // rearrange the screen for the quiz
+    // write the score
+    writeScore();
 
-    // set the scores to 0
-    let scoreTracker = document.getElementById('score-tracker');
-    scoreTracker.innerHTML = quiz.score;
+    // rearrange the screen for the quiz
+    arrangeQuestionPage();
 }
 
 // begin a quiz game with no category specified
@@ -87,4 +93,64 @@ function writeQuestion(questionIndex) {
     }
 }
 
-// 
+// sets classes to rearrange page for questions
+function arrangeQuestionPage() {
+    console.log('placeholder - arrangeQuestionPage()');
+}
+
+// listener for when an option is selected
+function selectOption() {
+    // style selected option using the 'selected-option' class
+    this.classList.add('selected-option');
+    alert(`you selected ${this.innerHTML}`);
+
+    // disable all option buttons
+    let optionsBox = document.getElementById('answers');
+    optionsBox.classList.add('option-selected');
+
+    // check answer and after 0.5s delay feedback to user
+    let answeredCorrectly = checkAnswer(this.innerHTML);
+    setTimeout(feedbackRoundToUser, 500, answeredCorrectly);
+
+    // enable 'Next' button
+    let nextButton = document.getElementById('next-btn');
+    nextButton.classList.remove('btn-disabled');
+}
+
+// check selected answer and feedback to user
+function checkAnswer(selectedAnswer) {
+    // compare selectedAnswer with correct answer in the quiz object
+    let currentQuestion = quiz.questionsData[quiz.questionNumber - 1]
+    let answeredCorrectly = selectedAnswer === currentQuestion.correctAnswer;
+
+    // return if user answered correctly
+    return answeredCorrectly;
+}
+
+// increment the score on the quiz object
+function incrementScore() {
+    quiz.score += 1;
+    writeScore();
+}
+
+// write the score
+function writeScore() {
+    let scoreTracker = document.getElementById('score-tracker');
+    scoreTracker.innerHTML = quiz.score;
+}
+
+// provide feedback to the user about the results of this round
+function feedbackRoundToUser(didUserAnswerCorrectly) {
+    // if correct increment score
+    if (didUserAnswerCorrectly) { incrementScore(); }
+    
+    // style the correct answer
+    // retrieve the correct answer from the quiz object
+    // find the .answer element containing it and apply the correct-answer class
+    
+    // if different to selected answer, apply some style to that answer too using incorrect-answer class
+    if (!didUserAnswerCorrectly) {
+        let selectedAnswer = document.getElementsByClassName('selected-option')[0];
+        selectedAnswer.classList.add('incorrect-answer');
+    }
+}
