@@ -14,6 +14,14 @@ document.addEventListener("DOMContentLoaded", function() {
     let quickPlayButton = document.getElementById('quick-play-btn');
     quickPlayButton.addEventListener('click', quickPlay);
 
+    // expose the category selector dropdown
+    let selectCategoryBtn = document.getElementById('select-category-btn');
+    selectCategoryBtn.addEventListener('click', showCategorySelector);
+
+    // beginCategoryQuiz on the play-category-btn
+    let categoryPlayBtn = document.getElementById('play-category-btn');
+    categoryPlayBtn.addEventListener('click', beginCategoryQuiz);
+
     // selectOption event listener on all options
     let answerOptions = document.getElementsByClassName('answer');
     for (const answerOption of answerOptions) {
@@ -27,7 +35,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // add returnToHomePage to listeners on 'home-btn' and 'exit-quiz-btn'
     let homeBtn = document.getElementById('home-btn');
     let exitQuizBtn = document.getElementById('exit-quiz-btn');
-    for (const btn of [homeBtn, exitQuizBtn]) {
+    let backBtn = document.getElementById('back-btn');
+    for (const btn of [homeBtn, exitQuizBtn, backBtn]) {
         btn.addEventListener('click', returnToHomePage);
     }
 })
@@ -241,4 +250,19 @@ function returnToHomePage() {
 // update stylng of page elements to recreate the Home page
 function arrangeHomePage() {
     console.log('called - arrangeHomePage()');
+}
+
+// begin a game with a selected category, if one has been selected
+function beginCategoryQuiz() {
+    // retrieve the value of 'quiz-category' dropdown
+    let categorySelector = document.getElementById('quiz-category');
+    let selectedCategory = categorySelector.value;
+    
+    // beginQuiz passing in the category selected
+    beginQuiz(selectedCategory);
+}
+
+// expose the select a category dropdown
+function showCategorySelector() {
+    console.log('called showCategorySelector');
 }

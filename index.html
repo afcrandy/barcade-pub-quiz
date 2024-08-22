@@ -13,7 +13,7 @@
 <body>
     <!-- top logo and scores/progress section -->
     <section class="top-area">
-        <div class="logo">Barcade Pub Quiz</div>
+        <h2 class="logo">Barcade Pub Quiz<h2>
 
         <div class="score-progress">
             <span class="score" id="score-tracker">2</span> / 15
@@ -24,10 +24,10 @@
     <section class="main-content">
         <!-- home page hero content -->
         <div class="hero-welcome">
-            <div class="hero-logo">
+            <h1 id="hero-logo">
                 Welcome to the Barcade Pub Quiz
-            </div>
-            <div class="hero-message">For those who want to play a pub quiz game</div>
+            </h1>
+            <h2 id="hero-message">For those who want to play a pub quiz game</h2>
         </div>
 
         <!-- question content for each round of the quiz -->
@@ -68,7 +68,32 @@
             <div class="quiz-action player-action" id="home-btn">Home</div>
             <div class="quiz-action player-action" id="instructions-btn">How to Play</div>
             <div class="quiz-action player-action" id="quick-play-btn">Play General Knowledge</div>
-            <div class="quiz-action player-action" id="play-category-btn">Select a category</div>
+            <div class="quiz-action player-action" id="select-category-btn">Select a category</div>
+        </div>
+
+        <!-- a dropdown so users can select a category to play -->
+        <div id="category-selector">
+            <label for="quiz-category">Select a category</label>
+
+            <!-- category selector dropdown -->
+            <select name="quiz-category" id="quiz-category">
+                <option value="arts_and_literature">Arts and Literature</option>
+                <option value="film_and_tv">Film and TV</option>
+                <option value="food_and_drink">Food and Drink</option>
+                <option value="general_knowledge">General Knowledge</option>
+                <option value="geography">Geography</option>
+                <option value="history">History</option>
+                <option value="music">Music</option>
+                <option value="science">Science</option>
+                <option value="society_and_culture">Society and Culture</option>
+                <option value="sport_and_leisure">Sport and Leisure</option>
+            </select>
+
+            <!-- Buttons - Go back and Play -->
+            <div class="quiz-actions" id="category-actions">
+                <div class="quiz-action player-action" id="back-btn">Go back</div>
+                <div class="quiz-action player-action" id="play-category-btn">Play</div>
+            </div>
         </div>
 
         <!-- actions a player can take during a round of a quiz -->
@@ -87,3 +112,7 @@
     <script src="assets/js/script.js"></script>
 </body>
 </html>
+
+
+
+
