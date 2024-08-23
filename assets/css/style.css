@@ -11,7 +11,7 @@
 
 
 /* site-wide defaults */
-* {
+*:not(dialog) {
     margin: 0;
     padding: 0;
     border: none;
