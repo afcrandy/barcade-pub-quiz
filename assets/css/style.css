@@ -1,3 +1,36 @@
+/* load font */
+@font-face {
+    font-family: PixelOperator;
+    src: url(../fonts/PixelOperator.ttf);
+}
+
+@font-face {
+    font-family: "04B_30";
+    src: url(../fonts/04B_30__.TTF);
+}
+
+
+/* site-wide defaults */
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+body {
+    font-family: PixelOperator;
+    font-weight: 300;
+    width: 100vw;
+    height: 100vh;
+}
+
+.logo {
+    font-family: "04B_30";
+}
+
 .answers.option-selected > .answer,
 .btn-disabled {
     pointer-events: none;
