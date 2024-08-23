@@ -35,10 +35,17 @@ document.addEventListener("DOMContentLoaded", function() {
     // add returnToHomePage to listeners on 'home-btn' and 'exit-quiz-btn'
     let homeBtn = document.getElementById('home-btn');
     let exitQuizBtn = document.getElementById('exit-quiz-btn');
-    let backBtn = document.getElementById('back-btn');
-    for (const btn of [homeBtn, exitQuizBtn, backBtn]) {
+    for (const btn of [homeBtn, exitQuizBtn]) {
         btn.addEventListener('click', returnToHomePage);
     }
+
+    // add a reset of the category select dropdown for the back button
+    let backBtn = document.getElementById('back-btn');
+    backBtn.addEventListener('click', function() {
+        // reset dropdown
+        resetCategorySelectDropdown();
+        returnToHomePage();
+    });
 })
 
 // event listeners to open and close the instructions modal
@@ -278,4 +285,11 @@ function setPageTo(screenClass) {
     
     // add the screen param as the new class
     screenDiv.classList.add(screenClass);
+}
+
+// reset the category select dropdown to the default (first) value
+function resetCategorySelectDropdown() {
+    let categorySelect = document.getElementById('quiz-category');
+    // set to the value with index 0
+    categorySelect.selectedIndex = 0;
 }
