@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", function() {
         answerOption.addEventListener('click', selectOption);
     }
 
-    // apply the nextRound function to the 'Next' buttong
+    // apply the clickNextButton function to the 'Next' button
     let nextButton = document.getElementById('next-btn');
-    nextButton.addEventListener('click', nextRound);
+    nextButton.addEventListener('click', clickNextButton);
 
     // add returnToHomePage to listeners on 'home-btn' and 'exit-quiz-btn'
     let homeBtn = document.getElementById('home-btn');
@@ -64,7 +64,7 @@ async function retrieveQuestions(categories) {
     // handle call failure
     if (apiResponse.status === 200) {
         quiz.questionsData = await apiResponse.json();
-        writeQuestion(0);
+        writeQuestion();
     } else {
         // add error page here
         console.log('API call failed');
@@ -94,15 +94,15 @@ function quickPlay() {
 }
 
 // given an index write a question to the page
-function writeQuestion(questionIndex) {
-    let questionData = quiz.questionsData[questionIndex];
+function writeQuestion() {
+    let currentQuestion = quiz.questionsData[quiz.questionNumber - 1];
 
     // write question text to qText
     let qText = document.getElementById('question-text');
-    qText.innerHTML = questionData.question.text;
+    qText.innerHTML = currentQuestion.question.text;
 
     // collect correct and incorrect answers together and sort alphabetically
-    let answersList = [questionData.correctAnswer, ...questionData.incorrectAnswers];
+    let answersList = [currentQuestion.correctAnswer, ...currentQuestion.incorrectAnswers];
     answersList.sort();
     
     // write the answers list to the option areas in alphabetical order
@@ -117,13 +117,13 @@ function writeQuestion(questionIndex) {
 // sets classes to rearrange page for questions
 function arrangeQuestionPage() {
     console.log('placeholder - arrangeQuestionPage()');
+    setPageTo('question');
 }
 
 // listener for when an option is selected
 function selectOption() {
     // style selected option using the 'selected-option' class
     this.classList.add('selected-option');
-    alert(`you selected ${this.innerHTML}`);
 
     // disable all option buttons
     let optionsBox = document.getElementById('answers');
@@ -153,27 +153,33 @@ function incrementScore() {
 // write the score
 function writeScore() {
     let scoreTracker = document.getElementById('score-tracker');
-    scoreTracker.innerHTML = quiz.score;
+    let finalScore = document.getElementById('final-score');
+
+    for (const scoreElem of [scoreTracker, finalScore]) {
+        scoreElem.innerHTML = quiz.score;
+    }
 }
 
 // provide feedback to the user about the results of this round
 function feedbackRoundToUser(didUserAnswerCorrectly) {
-    // if correct increment score
-    if (didUserAnswerCorrectly) { incrementScore(); }
+    let selectedOption = document.getElementsByClassName('selected-option')[0];
     
     // enable 'Next' button
     let nextButton = document.getElementById('next-btn');
     nextButton.classList.remove('btn-disabled');
     
-    // find the .answer element containing the correct answer and apply the correct-answer class
-    let correctAnswer = quiz.questionsData[quiz.questionNumber - 1].correctAnswer;
-    let correctOption = document.querySelector(`.answer[data-answer="${correctAnswer}"]`);
-    correctOption.classList.add('correct-answer');
-    
-    // if different to selected answer, apply some style to that answer too using incorrect-answer class
-    if (!didUserAnswerCorrectly) {
-        let selectedAnswer = document.getElementsByClassName('selected-option')[0];
-        selectedAnswer.classList.add('incorrect-answer');
+    // if correct increment score
+    if ( didUserAnswerCorrectly ) {
+        incrementScore();
+        selectedOption.classList.add('correct-answer');
+    } else {
+        // apply some style to selected answer using incorrect-answer class
+        selectedOption.classList.add('incorrect-answer');
+
+        // find the .answer element containing the correct answer and apply the correct-answer class
+        let correctAnswer = quiz.questionsData[quiz.questionNumber - 1].correctAnswer;
+        let correctOption = document.querySelector(`.answer[data-answer="${correctAnswer}"]`);
+        correctOption.classList.add('correct-answer');
     }
 }
 
@@ -184,33 +190,15 @@ function clickNextButton() {
     resetQuestionPage();
     
     // if currentQuestion is not the last one, reset and go again
-    if (quiz.questionNumber < 15) {
-        // increment quiz.questionNumber
-        quiz.questionNumber += 1;
+    if ( quiz.questionNumber < 15 ) {
+        // questions remain, go to next round
+        nextRound();
 
-        // write the next question to the page
-        writeQuestion(quiz.questionNumber - 1);
+        // if this was the penultimate question change text on 'Next' button for final question
+        if ( quiz.questionNumber === 14 ) { document.getElementById('next-btn').innerHTML = "See your results"; }
     } else {
         // trigger Results page
-        alert('Game is over now');
-    }
-}
-
-// when the user clicks next
-function nextRound() {
-    // reset question page functionality and styling
-    resetQuestionPage();
-    
-    // if currentQuestion is not the last one, reset and go again
-    if (quiz.questionNumber < 15) {
-        // increment quiz.questionNumber
-        quiz.questionNumber += 1;
-
-        // write the next question to the page
-        writeQuestion(quiz.questionNumber - 1);
-    } else {
-        // trigger Results page
-        alert('Game is over now');
+        arrangeResultsPage();
     }
 }
 
@@ -218,17 +206,17 @@ function nextRound() {
 function resetQuestionPage() {
     // remove the 'selected-option' class
     let selectedOption = document.getElementsByClassName('selected-option')[0];
-    if (selectedOption) { selectedOption.classList.remove('selected-option') };
+    if ( selectedOption ) { selectedOption.classList.remove('selected-option') };
     
     // remove the 'option-selected' class
     let answersBox = document.getElementById('answers');
-    if (answersBox) { answersBox.classList.remove('option-selected') };
+    if ( answersBox ) { answersBox.classList.remove('option-selected') };
 
     // remove the 'incorrect-answer' and 'correct-answer' classes, if they exist
     let incorrectAnswer = document.getElementsByClassName('incorrect-answer')[0],
         correctAnswer = document.getElementsByClassName('correct-answer')[0];
-    if (incorrectAnswer) { incorrectAnswer.classList.remove('incorrect-answer'); }
-    if (correctAnswer) { correctAnswer.classList.remove('correct-answer'); }
+    if ( incorrectAnswer ) { incorrectAnswer.classList.remove('incorrect-answer'); }
+    if ( correctAnswer ) { correctAnswer.classList.remove('correct-answer'); }
 
     // disable 'Next' button
     let nextButton = document.getElementById('next-btn');
@@ -238,18 +226,35 @@ function resetQuestionPage() {
     nextButton.innerHTML = "Next";
 }
 
+// when the user clicks next
+function nextRound() {
+    // increment quiz.questionNumber
+    quiz.questionNumber += 1;
+
+    // write the next question to the page
+    writeQuestion();
+}
+
+// take user to the results page where they can see final score, and go home or start another game
+function arrangeResultsPage() {
+    console.log('called - arrangeResultsPage()');
+    setPageTo('results');
+}
+
 // return to the homepage - clear styling and arrange the page
 function returnToHomePage() {
     // clear the question page of styling should user begin a new quiz
     resetQuestionPage();
 
     // rearrange the page for Home
-    arrangeHomePage();
+    console.log('called - returnToHomePage()');
+    setPageTo('homepage');
 }
 
-// update stylng of page elements to recreate the Home page
-function arrangeHomePage() {
-    console.log('called - arrangeHomePage()');
+// expose the select a category dropdown
+function showCategorySelector() {
+    console.log('called - showCategorySelector');
+    setPageTo('cat-select');
 }
 
 // begin a game with a selected category, if one has been selected
@@ -262,7 +267,15 @@ function beginCategoryQuiz() {
     beginQuiz(selectedCategory);
 }
 
-// expose the select a category dropdown
-function showCategorySelector() {
-    console.log('called showCategorySelector');
+// sets the class on the body element to move the page through the different screens of the game
+function setPageTo(screen) {
+    let screenDiv = document.getElementById('screen');
+
+    // remove any classes on the body element
+    for (const screenName of ['homepage', 'question', 'results', 'cat-select']) {
+        screenDiv.classList.remove(screenName);
+    }
+    
+    // add the screen param as the new class
+    screenDiv.classList.add(screenName);
 }
