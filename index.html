@@ -14,7 +14,7 @@
 
     <div id="screen" class="homepage">
         <!-- top logo and scores/progress section -->
-        <section class="top-area">
+        <section class="top-area hide-homepage hide-cat-select">
             <h2 class="logo">Barcade Pub Quiz<h2>
 
             <div class="score-progress">
@@ -25,7 +25,7 @@
         <!-- main content section for landing page and question area -->
         <section class="main-content">
             <!-- home page hero content -->
-            <div class="hero-welcome">
+            <div class="hero-welcome hide-question hide-results">
                 <h1 id="hero-logo">
                     Welcome to the <span class="logo">Barcade Pub Quiz</span>
                 </h1>
@@ -33,7 +33,7 @@
             </div>
 
             <!-- question content for each round of the quiz -->
-            <div class="question-area">
+            <div class="question-area hide-homepage hide-cat-select hide-results">
                 <div class="question-text" id="question-text">This is a question</div>
 
                 <div class="answers" id="answers">
@@ -45,36 +45,36 @@
             </div>
 
             <!-- final score upon quiz completion -->
-            <div class="results-area">
+            <div class="results-area hide-homepage hide-cat-select hide-question">
                 <div>Out of 15 questions, you got</div>
                 
                 <div class="final-score">
                     <span class="score" id="final-score">3</span>
                 </div>
             </div>
-
-            <!-- the instructions modal -->
-            <dialog class="instructions-modal" id="instructions-modal">
-                <div class="instructions">
-                    Here are some instructions
-                </div>
-                
-                <button id="close-instructions-btn">Close</button>
-            </dialog>
         </section>
+
+        <!-- the instructions modal -->
+        <dialog class="instructions-modal" id="instructions-modal">
+            <div class="instructions">
+                Here are some instructions
+            </div>
+            
+            <button id="close-instructions-btn">Close</button>
+        </dialog>
 
         <!-- actions section, contains play, continue and home buttons -->
         <section class="actions-area">
             <!-- actions a player can take either before or after a quiz -->
-            <div class="quiz-actions" id="quiz-actions">
-                <div class="quiz-action player-action" id="home-btn">Home</div>
-                <div class="quiz-action player-action" id="instructions-btn">How to Play</div>
+            <div class="quiz-actions hide-cat-select hide-question" id="quiz-actions">
+                <div class="quiz-action player-action hide-homepage" id="home-btn">Home</div>
+                <div class="quiz-action player-action hide-results" id="instructions-btn">How to Play</div>
                 <div class="quiz-action player-action" id="quick-play-btn">Play General Knowledge</div>
                 <div class="quiz-action player-action" id="select-category-btn">Select a category</div>
             </div>
 
             <!-- a dropdown so users can select a category to play -->
-            <div id="category-selector">
+            <div id="category-selector" class="hide-homepage hide-question hide-results">
                 <label for="quiz-category">Select a category</label>
 
                 <!-- category selector dropdown -->
@@ -99,7 +99,7 @@
             </div>
 
             <!-- actions a player can take during a round of a quiz -->
-            <div class="round-actions" id="round-actions">
+            <div class="round-actions hide-homepage hide-cat-select" id="round-actions">
                 <div class="round-action player-action" id="exit-quiz-btn">Home</div>
                 <div class="round-action player-action btn-disabled" id="next-btn">Next</div>
             </div>

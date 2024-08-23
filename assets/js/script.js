@@ -195,7 +195,7 @@ function clickNextButton() {
         nextRound();
 
         // if this was the penultimate question change text on 'Next' button for final question
-        if ( quiz.questionNumber === 14 ) { document.getElementById('next-btn').innerHTML = "See your results"; }
+        if ( quiz.questionNumber === 15 ) { document.getElementById('next-btn').innerHTML = "See your results"; }
     } else {
         // trigger Results page
         arrangeResultsPage();
@@ -268,7 +268,7 @@ function beginCategoryQuiz() {
 }
 
 // sets the class on the body element to move the page through the different screens of the game
-function setPageTo(screen) {
+function setPageTo(screenClass) {
     let screenDiv = document.getElementById('screen');
 
     // remove any classes on the body element
@@ -277,5 +277,5 @@ function setPageTo(screen) {
     }
     
     // add the screen param as the new class
-    screenDiv.classList.add(screenName);
+    screenDiv.classList.add(screenClass);
 }

@@ -27,8 +27,17 @@ body {
     height: 100vh;
 }
 
+/* homepage */
 .logo {
     font-family: "04B_30";
+}
+
+/* page arranging */
+#screen.homepage .hide-homepage,
+#screen.cat-select .hide-cat-select,
+#screen.question .hide-question,
+#screen.results .hide-results {
+    display: none;
 }
 
 .answers.option-selected > .answer,
