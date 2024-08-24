@@ -82,7 +82,7 @@ section > div {
 #hero-logo {
     flex-grow: 4;
     font-size: 3em;
-    padding-top: 10%;
+    padding-top: 20%;
 }
 
 #quiz-actions .btn-container {
