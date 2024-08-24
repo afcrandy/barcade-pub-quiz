@@ -1,4 +1,4 @@
-/* load font */
+/* load fonts */
 @font-face {
     font-family: PixelOperator;
     src: url(../fonts/PixelOperator.ttf);
@@ -40,6 +40,8 @@ body {
     display: none;
 }
 
+
+/* question page */
 .answers.option-selected > .answer,
 .btn-disabled {
     pointer-events: none;
