@@ -26,13 +26,18 @@ body {
     font-size: 1.2em;
     width: 100vw;
     height: 100svh;
+    color: white;
+
+    /* background image */
+    background: url('../images/barcade-background-1920-1080.jpg') no-repeat center center;
+    background-size: 120% 110%;
 }
 
 #screen {
     height: 100%;
     width: 100%;
-    padding: 20px;
-    padding-bottom: 30px;
+    padding: 90px 20px 70px;
+    /* padding-bottom: 70px; */
     display: flex;
     flex-direction: column;
     justify-content: stretch;
@@ -85,7 +90,7 @@ section > div {
 #hero-logo {
     flex-grow: 4;
     font-size: 2em;
-    padding-top: 25%;
+    /* padding-top: 25%; */
 }
 
 #quiz-actions .btn-container {
@@ -171,15 +176,19 @@ footer {
 
 /* media queries */
 @media only screen and (min-width: 800px) {
+    body {
+        background-size: 110% 110%;
+    }
+    
     #screen {
         max-width: 800px;
         margin-left: auto;
         margin-right: auto;
     }
 
-    #hero-logo {
+    /* #hero-logo {
         padding-top: 15%
-    }
+    } */
 
     /* #screen.homepage .main-content,
     #screen.cat-select .main-content {
