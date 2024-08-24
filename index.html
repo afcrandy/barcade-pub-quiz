@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <div id="screen" class="homepage">
+    <div id="screen" class="cat-select">
         <!-- top logo and scores/progress section -->
         <section class="top-area hide-homepage hide-cat-select">
             <h2 class="logo">Barcade Pub Quiz<h2>
@@ -88,26 +88,33 @@
 
             <!-- a dropdown so users can select a category to play -->
             <div id="category-selector" class="hide-homepage hide-question hide-results">
-                <label for="quiz-category">Select a category</label>
+                <div class="dropdown-container">
+                    <label for="quiz-category">Select a category</label>
 
-                <!-- category selector dropdown -->
-                <select name="quiz-category" id="quiz-category">
-                    <option value="arts_and_literature">Arts and Literature</option>
-                    <option value="film_and_tv">Film and TV</option>
-                    <option value="food_and_drink">Food and Drink</option>
-                    <option value="general_knowledge">General Knowledge</option>
-                    <option value="geography">Geography</option>
-                    <option value="history">History</option>
-                    <option value="music">Music</option>
-                    <option value="science">Science</option>
-                    <option value="society_and_culture">Society and Culture</option>
-                    <option value="sport_and_leisure">Sport and Leisure</option>
-                </select>
+                    <!-- category selector dropdown -->
+                    <select name="quiz-category" id="quiz-category" class="player-action">
+                        <option value="arts_and_literature">Arts and Literature</option>
+                        <option value="film_and_tv">Film and TV</option>
+                        <option value="food_and_drink">Food and Drink</option>
+                        <option value="general_knowledge">General Knowledge</option>
+                        <option value="geography">Geography</option>
+                        <option value="history">History</option>
+                        <option value="music">Music</option>
+                        <option value="science">Science</option>
+                        <option value="society_and_culture">Society and Culture</option>
+                        <option value="sport_and_leisure">Sport and Leisure</option>
+                    </select>
+                </div>
 
                 <!-- Buttons - Go back and Play -->
                 <div class="quiz-actions" id="category-actions">
-                    <div class="quiz-action player-action" id="back-btn">Go back</div>
-                    <div class="quiz-action player-action" id="play-category-btn">Play</div>
+                    <div class="btn-container">
+                        <div class="category-action player-action" id="back-btn">Go back</div>
+                    </div>
+
+                    <div class="btn-container">
+                        <div class="category-action player-action" id="play-category-btn">Play</div>
+                    </div>
                 </div>
             </div>
 

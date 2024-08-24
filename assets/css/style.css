@@ -23,6 +23,7 @@
 body {
     font-family: PixelOperator;
     font-weight: 300;
+    font-size: 1.2em;
     width: 100vw;
     height: 100svh;
 }
@@ -31,6 +32,7 @@ body {
     height: 100%;
     width: 100%;
     padding: 20px;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
@@ -60,15 +62,16 @@ section > div {
 /* homepage + category select page */
 .logo {
     font-family: "04B_30";
+    font-size: 3em;
 }
 
 #screen.homepage .main-content,
 #screen.cat-select .main-content {
-    flex-basis: 60%;
+    flex-basis: 65%;
 }
 #screen.homepage .actions-area,
 #screen.cat-select .actions-area {
-    flex-basis: 30%;
+    flex-basis: 35%;
 }
 
 .main-content > div {
@@ -81,8 +84,8 @@ section > div {
 }
 #hero-logo {
     flex-grow: 4;
-    font-size: 3em;
-    padding-top: 20%;
+    font-size: 2em;
+    padding-top: 25%;
 }
 
 #quiz-actions .btn-container {
@@ -92,12 +95,58 @@ section > div {
     justify-content: center;
 }
 
-#quiz-actions .player-action {
-    font-size: 1.2em;
+.player-action {
     text-align: center;
     border: 1px solid black;
     border-radius: 10px;
     padding: 20px;
+}
+
+#category-selector {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.actions-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+.actions-area > * {
+    flex-grow: 1;
+}
+
+.dropdown-container {
+    flex-basis: 60%;
+}
+.dropdown-container > * {
+    display: block;
+    width: 100%;
+}
+#quiz-category {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+select {
+    font-family: inherit;
+    font-size: 1.2rem;
+}
+label {
+    padding: 10px;
+}
+
+#category-actions {
+    flex-basis: 40%;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 15%;
+    justify-content: space-between;
+}
+
+#category-actions .player-action {
+    min-width: 100px;
 }
 
 
@@ -117,4 +166,27 @@ footer {
     font-size: 0.8rem;
     width: 100%;
     text-align: center;
+}
+
+
+/* media queries */
+@media only screen and (min-width: 800px) {
+    #screen {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #hero-logo {
+        padding-top: 15%
+    }
+
+    /* #screen.homepage .main-content,
+    #screen.cat-select .main-content {
+        flex-basis: 50%;
+    }
+    #screen.homepage .actions-area,
+    #screen.cat-select .actions-area {
+        flex-basis: 50%;
+    } */
 }
