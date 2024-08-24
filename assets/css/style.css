@@ -24,13 +24,29 @@ body {
     font-family: PixelOperator;
     font-weight: 300;
     width: 100vw;
-    height: 100vh;
+    height: 100svh;
 }
 
-/* homepage */
-.logo {
-    font-family: "04B_30";
+#screen {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
 }
+
+#screen > section,
+section > div > * {
+    flex-grow: 1;
+}
+
+section > div {
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* page arranging */
 #screen.homepage .hide-homepage,
@@ -41,8 +57,64 @@ body {
 }
 
 
+/* homepage + category select page */
+.logo {
+    font-family: "04B_30";
+}
+
+#screen.homepage .main-content,
+#screen.cat-select .main-content {
+    flex-basis: 60%;
+}
+#screen.homepage .actions-area,
+#screen.cat-select .actions-area {
+    flex-basis: 30%;
+}
+
+.main-content > div {
+    height: 100%;
+}
+
+.hero-welcome {
+    padding: 10px;
+    text-align: center;
+}
+#hero-logo {
+    flex-grow: 4;
+    font-size: 3em;
+    padding-top: 10%;
+}
+
+#quiz-actions .btn-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#quiz-actions .player-action {
+    font-size: 1.2em;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+
 /* question page */
 .answers.option-selected > .answer,
 .btn-disabled {
     pointer-events: none;
+}
+
+
+/* footer */
+footer {
+    position: absolute;
+    padding: 10px 5px;
+    bottom: 0;
+    left: 0;
+    font-size: 0.8rem;
+    width: 100%;
+    text-align: center;
 }
