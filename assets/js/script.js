@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
         resetCategorySelectDropdown();
         returnToHomePage();
     });
-})
+});
 
 // event listeners to open and close the instructions modal
 function openInstructions() {
@@ -145,7 +145,7 @@ function selectOption() {
 // check selected answer and feedback to user
 function checkAnswer(selectedAnswer) {
     // compare selectedAnswer with correct answer in the quiz object
-    let currentQuestion = quiz.questionsData[quiz.questionNumber - 1]
+    let currentQuestion = quiz.questionsData[quiz.questionNumber - 1];
     let answeredCorrectly = selectedAnswer === currentQuestion.correctAnswer;
 
     // return if user answered correctly
@@ -214,11 +214,11 @@ function clickNextButton() {
 function resetQuestionPage() {
     // remove the 'selected-option' class
     let selectedOption = document.getElementsByClassName('selected-option')[0];
-    if ( selectedOption ) { selectedOption.classList.remove('selected-option') };
+    if ( selectedOption ) { selectedOption.classList.remove('selected-option'); }
     
     // remove the 'option-selected' class
     let answersBox = document.getElementById('answers');
-    if ( answersBox ) { answersBox.classList.remove('option-selected') };
+    if ( answersBox ) { answersBox.classList.remove('option-selected'); }
 
     // remove the 'incorrect-answer' and 'correct-answer' classes, if they exist
     let incorrectAnswer = document.getElementsByClassName('incorrect-answer')[0],

@@ -43,6 +43,7 @@ body {
 }
 
 #screen > section,
+#screen > div,
 section > div > * {
     flex-grow: 1;
 }
