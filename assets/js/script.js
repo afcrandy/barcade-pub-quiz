@@ -123,7 +123,6 @@ function writeQuestion() {
 
 // sets classes to rearrange page for questions
 function arrangeQuestionPage() {
-    console.log('placeholder - arrangeQuestionPage()');
     setPageTo('question');
 }
 
@@ -137,7 +136,7 @@ function selectOption() {
     optionsBox.classList.add('option-selected');
 
     // check answer and after 0.5s delay feedback to user
-    let answeredCorrectly = checkAnswer(this.innerHTML);
+    let answeredCorrectly = checkAnswer(this.textContent);
     setTimeout(feedbackRoundToUser, 500, answeredCorrectly);
 }
 
@@ -244,7 +243,6 @@ function nextRound() {
 
 // take user to the results page where they can see final score, and go home or start another game
 function arrangeResultsPage() {
-    console.log('called - arrangeResultsPage()');
     setPageTo('results');
 }
 
@@ -254,13 +252,11 @@ function returnToHomePage() {
     resetQuestionPage();
 
     // rearrange the page for Home
-    console.log('called - returnToHomePage()');
     setPageTo('homepage');
 }
 
 // expose the select a category dropdown
 function showCategorySelector() {
-    console.log('called - showCategorySelector');
     setPageTo('cat-select');
 }
 
