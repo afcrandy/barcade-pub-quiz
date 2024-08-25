@@ -333,3 +333,14 @@ footer {
         padding: 90px 3% 70px;
     }
 }
+
+
+/* error pages */
+.error-404 a, .error-500 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.error-404 .btn-container p, .error-500 .btn-container p {
+    text-align: center;
+}
