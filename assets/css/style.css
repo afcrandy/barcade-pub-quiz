@@ -48,7 +48,6 @@ section > div > * {
 }
 
 section > div {
-    /* height: 100%; */
     display: flex;
     flex-direction: column;
 }
@@ -81,10 +80,6 @@ button {
 #screen.cat-select .main-content {
     flex-basis: 55%;
 }
-/* #screen.homepage #actions-area,
-#screen.cat-select #actions-area {
-    flex-basis: 45%;
-} */
 
 .main-content > div {
     height: 100%;
@@ -272,9 +267,6 @@ label {
 #screen.results .main-content {
     flex-basis: 40%;
 }
-/* #screen.results #actions-area {
-    flex-basis: 45%;
-} */
 
 .final-score {
     display: flex;
@@ -346,7 +338,6 @@ footer {
         max-width: 800px;
         margin-left: auto;
         margin-right: auto;
-        /* padding: 90px 3% 70px; */
     }
 
     #hero-logo {
