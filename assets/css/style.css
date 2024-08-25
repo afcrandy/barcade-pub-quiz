@@ -36,7 +36,7 @@ body {
 #screen {
     height: 100%;
     width: 100%;
-    padding: 60px 8% 70px;
+    padding: 70px 8% 70px;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
@@ -275,6 +275,17 @@ label {
 /* #screen.results #actions-area {
     flex-basis: 45%;
 } */
+
+.final-score {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#final-score {
+    flex-grow: 2;
+}
 
 .results-area {
     font-size: 1.4em;
