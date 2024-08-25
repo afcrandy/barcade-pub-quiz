@@ -296,6 +296,24 @@ footer {
 }
 
 
+/* instructions modal */
+#instructions-modal {
+    background-color: black;
+    color: inherit;
+    width: 80%;
+    font-size: 85%;
+}
+
+.instructions > * {
+    margin: 20px;
+}
+
+#instructions-modal li {
+    list-style-position: inside;
+    margin-bottom: 20px;
+}
+
+
 /* media queries */
 @media only screen and (min-width: 800px) {
     body {
