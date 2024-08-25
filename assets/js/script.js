@@ -60,6 +60,7 @@ function closeInstructions() {
 }
 
 // call question api and retrieve 15 random questions
+// adapted from equivalent function in https://github.com/kera-cudmore/TheQuizArms
 async function retrieveQuestions(categories) {
     // build api call, default to 15 questions no category
     const apiBaseURL = 'https://the-trivia-api.com/v2/questions';
@@ -75,6 +76,7 @@ async function retrieveQuestions(categories) {
     } else {
         // add error page here
         console.log('API call failed');
+        window.location.assign('500.html');
     }
 }
 
