@@ -183,6 +183,7 @@ label {
 .answers.option-selected .answer,
 .btn-disabled {
     pointer-events: none;
+    cursor: default;
 }
 
 #screen.question .main-content {
